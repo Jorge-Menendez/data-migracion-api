@@ -10,16 +10,28 @@ Este proyecto tiene como objetivo desarrollar un sistema de migración de datos 
 
 ## Estructura del Proyecto
 ```
-/patient-api
-│── /data       # Archivos Excel con la información a migrar
-│   ├── pacientes.xlsx            # Datos de los pacientes
-│   ├── presupuestos.xlsx         # Información de presupuestos
-│   ├── presupuestos_detalle.xlsx # Detalles de cada presupuesto
+/DATA-MIGRACION-API
+│── /data       # Archivos de datos a migrar
 │── /db         # Esquema de la base de datos
 │── /logs       # Registros generados durante la migración
-│── /scripts    # Scripts SQL y de migración
-│   ├── db_schema.sql   # Creación de tablas
-│   ├── migrate.js      # Script de migración
+│── /node_modules # Dependencias de Node.js
+│── /scripts    # Scripts de migración y SQL
+│── /src        # Código fuente del proyecto
+│   ├── /config       # Configuraciones generales
+│   ├── /controllers  # Controladores de la API
+│   ├── /dto          # Definiciones de transferencia de datos
+│   ├── /migrations   # Scripts de migración de base de datos
+│   ├── /models       # Modelos de base de datos
+│   ├── /routes       # Rutas de la API
+│   ├── /services     # Lógica de negocio y servicios
+│   ├── /utils        # Utilidades auxiliares
+│   ├── app.ts        # Configuración principal de la aplicación
+│   ├── server.ts     # Servidor Express
+│── .gitignore       # Archivos ignorados por Git
+│── package-lock.json # Bloqueo de versiones de dependencias
+│── package.json     # Configuración del proyecto y dependencias
+│── README.md        # Documentación del proyecto
+│── tsconfig.json    # Configuración de TypeScript
 ```
 
 ## Base de Datos
@@ -30,7 +42,7 @@ Tablas principales:
 - `tratamientos`
 - `productos`
 
-Los scripts de creación de tablas están en `scripts/db_schema.sql`.
+Los scripts de creación de tablas están en `db/` y `scripts/db_schema.sql`.
 
 ## API REST
 - `GET /api/pacientes` - Lista de pacientes
@@ -43,8 +55,8 @@ Los scripts de creación de tablas están en `scripts/db_schema.sql`.
 ## Instalación y Ejecución
 ### 1. Clonar el repositorio
 ```bash
-git clone <URL_REPOSITORIO>
-cd patient-api
+git clone https://github.com/Jorge-Menendez/data-migracion-api.git
+cd data-migracion-api
 ```
 
 ### 2. Instalar dependencias
@@ -72,7 +84,7 @@ npm run start
 ```
 
 ## Estrategia de Migración
-1. Leer archivos Excel desde `data/` con `xlsx`.
+1. Leer archivos desde `data/` con `xlsx`.
 2. Transformar datos según la nueva estructura.
 3. Insertar datos en la base de datos con `knex.js`.
 4. Validar relaciones y consistencia de datos.
@@ -98,4 +110,3 @@ El proyecto incluye los siguientes scripts:
   ```
 
 Estos comandos facilitan la ejecución y mantenimiento del sistema.
-
